@@ -22,36 +22,60 @@ public class DynamicIntArray {
     public void add(int number) {
 
 
-        int [] newArray = new int[this.array.length + 1];
+        int [] tempArray = new int[this.array.length + 1];
 
         for(int i=0; i < this.array.length; i++){
-            newArray[i] = this.array[i];
+            tempArray[i] = this.array[i];
         }
-        newArray [this.array.length] = number;
-        setArray(newArray);
+        tempArray [this.array.length] = number;
+        setArray(tempArray);
 
     }
 
     public void remove(int number){
 
-        int [] newArray = new int[this.array.length - 1];
+        int [] tempArray = new int[this.array.length - 1];
 
-        int j = 0;
+        int tempIndex = 0;
 
         for(int i=0; i < this.array.length; i++) {
 
             if (this.array[i] != number) {
-                newArray[j] = this.array[i];
-                j++;
+                tempArray[tempIndex] = this.array[i];
+                tempIndex++;
             }
         }
 
-            setArray(newArray);
+            setArray(tempArray);
 
 
     }
 
     public void insert(int position, int number){
+
+        int [] tempArray = new int[this.array.length + 1];
+        System.out.println(this.array.length);
+
+        int tempIndex = 0;
+
+        for(int i=0; i < this.array.length; i++) {
+
+            if (i != position) {
+                tempArray[tempIndex] = this.array[i];
+                tempIndex++;
+            }
+            if(i == position){
+                tempArray[tempIndex] = number;
+                tempIndex++;
+                tempArray[tempIndex] = this.array[i];
+                tempIndex++;
+            }
+        }
+
+        setArray(tempArray);
+        if(position > this.array.length){
+            this.array[this.array.length - 1] = number;
+        }
 
     }
 
